@@ -1,1 +1,84 @@
 @import "tailwindcss";
+
+@theme inline {
+    --font-sans: var(--font-manrope), ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-heading: "Playfair Display", "Times New Roman", ui-serif, Georgia, serif;
+
+    --color-background: var(--cs-color-background);
+    --color-foreground: var(--cs-color-text-primary);
+    --color-primary: var(--cs-color-primary);
+    --color-primary-foreground: var(--cs-color-text-on-dark);
+    --color-primary-hover: var(--cs-color-primary-hover);
+
+    --color-surface: var(--cs-color-surface);
+    --color-border: var(--cs-color-border);
+    --color-secondary: color-mix(in oklab, var(--cs-color-support) 12%, var(--cs-color-background));
+
+    --color-text-strong: var(--cs-color-text-strong);
+    --color-text-tertiary: var(--cs-color-text-tertiary);
+    --color-on-dark: var(--cs-color-text-on-dark);
+}
+
+:root {
+    --cs-color-primary: oklch(58.521% 0.1526 29.318);
+    --cs-color-primary-hover: oklch(49.178% 0.1319 29.648);
+    --cs-color-support: oklch(71.973% 0.1045 38.111);
+
+    --cs-color-background: oklch(97.706% 0.0074 80.721);
+    --cs-color-surface: oklch(100% 0.0000 90);
+    --cs-color-surface-inverted: oklch(41.504% 0.1168 31.954);
+
+    --cs-color-text-primary: oklch(21.851% 0.0025 67.696);
+    --cs-color-text-strong: oklch(35.577% 0.0593 48.586);
+    --cs-color-text-tertiary: oklch(41.504% 0.1168 31.954);
+    --cs-color-text-on-dark: oklch(97.706% 0.0074 80.721);
+
+    --cs-color-border: oklch(71.973% 0.1045 38.111);
+
+    --cs-opacity-noise: 0.02;
+}
+
+@font-face {
+    font-family: 'Sakire';
+    src: url('/fonts/Sakire-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+}
+
+.noise-soft {
+    background-image:
+        radial-gradient(circle at 15% 20%,
+            color-mix(in oklab, var(--cs-color-primary) 7%, transparent) 0,
+            transparent 38%),
+        radial-gradient(circle at 85% 80%,
+            color-mix(in oklab, var(--cs-color-support) 35%, transparent) 0,
+            transparent 42%);
+    opacity: calc(1 - var(--cs-opacity-noise));
+}
+
+.warm-overlay-soft {
+    background: linear-gradient(180deg,
+            color-mix(in oklab, var(--cs-color-background) 8%, transparent) 0%,
+            color-mix(in oklab, var(--cs-color-surface-inverted) 24%, transparent) 100%);
+}
+
+.glass-warm {
+    border: 1px solid color-mix(in oklab, var(--cs-color-text-on-dark) 30%, transparent);
+    background: color-mix(in oklab, var(--cs-color-background) 38%, transparent);
+    backdrop-filter: blur(10px);
+}
+
+.editorial-card {
+    border-radius: 1.5rem;
+    border: 1px solid color-mix(in oklab, var(--cs-color-border) 58%, var(--cs-color-background));
+    background: color-mix(in oklab, var(--cs-color-surface) 96%, white 4%);
+    box-shadow: 0 1px 8px color-mix(in oklab, #7f2d1f 10%, transparent);
+}
